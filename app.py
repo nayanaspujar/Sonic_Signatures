@@ -10,9 +10,7 @@ from scipy.signal import spectrogram
 from scipy.ndimage import maximum_filter
 from collections import Counter
 
-# =====================================================
-# PAGE CONFIG
-# =====================================================
+
 
 st.set_page_config(
     page_title="Sonic Signatures",
@@ -24,9 +22,7 @@ st.markdown(
     "### Audio Fingerprinting and Song Recognition System"
 )
 
-# =====================================================
-# LOAD DATABASE
-# =====================================================
+
 
 @st.cache_resource
 def load_database():
@@ -38,9 +34,7 @@ def load_database():
 
 database = load_database()
 
-# =====================================================
-# SIDEBAR
-# =====================================================
+
 
 st.sidebar.header("Database Information")
 
@@ -59,9 +53,6 @@ with st.sidebar.expander("View Songs"):
     for song in sorted(database.keys()):
         st.write(song)
 
-# =====================================================
-# FINGERPRINT GENERATION
-# =====================================================
 
 def generate_fingerprints(audio_file):
 
@@ -133,9 +124,7 @@ def generate_fingerprints(audio_file):
         peaks
     )
 
-# =====================================================
-# SONG IDENTIFICATION
-# =====================================================
+
 
 def identify_song(uploaded_file):
 
@@ -176,9 +165,7 @@ def identify_song(uploaded_file):
         query_fp
     )
 
-# =====================================================
-# TABS
-# =====================================================
+
 
 tab1, tab2 = st.tabs(
     [
@@ -187,9 +174,6 @@ tab1, tab2 = st.tabs(
     ]
 )
 
-# =====================================================
-# SINGLE QUERY MODE
-# =====================================================
 
 with tab1:
 
@@ -269,9 +253,7 @@ Confidence: {confidence:.2f}%
 
         st.divider()
 
-        # =========================================
-        # Spectrogram
-        # =========================================
+       
 
         st.subheader(
             "Spectrogram"
@@ -303,9 +285,7 @@ Confidence: {confidence:.2f}%
 
         st.pyplot(fig)
 
-        # =========================================
-        # Constellation Map
-        # =========================================
+        
 
         st.subheader(
             "Constellation Map"
@@ -335,9 +315,7 @@ Confidence: {confidence:.2f}%
 
         st.pyplot(fig2)
 
-        # =========================================
-        # Top Matches
-        # =========================================
+        
 
         st.subheader(
             "Top Candidate Songs"
@@ -368,9 +346,7 @@ Confidence: {confidence:.2f}%
             )
         )
 
-# =====================================================
-# BATCH MODE
-# =====================================================
+
 
 with tab2:
 
